@@ -41,15 +41,21 @@ if [[ "${gpu,,}" == *"amd"* ]]; then
 fi
 
 # Install GNOME and important software.
+chmod u+x desktops/gnome.sh
 ./desktops/gnome.sh
 
 # Install fonts
-./extra/fonts.sh
+echo "Installing fonts"
+sleep 5s
+xbps-install -y noto-fonts-emoji noto-fonts-ttf noto-fonts-ttf-extra
+echo "Finished installing fonts"
 
 # Install printer drivers (I fucking hate printers so much. Why does not a single good printer exist.)
+chmod u+x extra/printer.sh
 ./extra/printer.sh
 
 # Disable the network management services used in the installer and enable NetworkManager. This is not in the script so I can use ConnMan with Enlightenment.
+chmod u+x extra/printer.sh
 ./extra/NetworkManager.sh
 
 # Enabling important services not started elsewhere
