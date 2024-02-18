@@ -7,7 +7,7 @@ echo "This has only been tested by installing from the the 2023-06-28 glibc live
 echo "You will have to reconfigure your WiFi once boot into GNOME."
 echo "If you are running this script, you should already have an internet connection and already have Void Linux installed."
 echo "IMPORTANT: IF YOU ARE USING AN NVIDIA GPU, DO NOT CONTINUE UNTIL YOU KNOW THAT THE GRAPHICS DRIVERS BEING INSTALLED ARE THE CORRECT ONES FOR YOUR CARD."
-read -p "Do you want to continue with the installation? " gpu
+read -p "Do you want to continue with the installation?(yes/no) " gpu
 if [[ "${gpu,,}" == *"no"* ]];then
    echo "exiting installer"
    exit
@@ -43,6 +43,7 @@ fi
 # Install GNOME and important software. Flathub is enabled for GNOME Software.
 xbps-install -y dbus gnome elogind gdm NetworkManager gnome-software firefox vlc libreoffice pulseaudio alsa-plugins-pulseaudio timeshift cronie bluez xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk chrony
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+rm -rf ~/.cache/gnome-software
 
 # Install fonts
 xbps-install -y noto-fonts-emoji noto-fonts-ttf noto-fonts-ttf-extra
