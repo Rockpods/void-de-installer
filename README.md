@@ -5,7 +5,7 @@ An install script for Void Linux that installs GNOME, and sets it up for day-to-
 
 ### Installation Instructions:
 
-**Warning: The script probably does not do well at installing the correct drivers for your NVIDIA GPU. If you have an NVIDIA GPU, it is probably better to replace the command in line 35 with the recommended commands for your GPU, which can be found in the [Void Linux Documentation](https://docs.voidlinux.org/config/graphical-session/graphics-drivers/index.html).**
+**Warning: The script probably does not do well at installing the correct drivers for your NVIDIA GPU. If you have an NVIDIA GPU, it is probably better to replace the line 35 with the recommended commands for your GPU, which can be found in the [Void Linux Documentation](https://docs.voidlinux.org/config/graphical-session/graphics-drivers/index.html).**
 1. Install Void Linux using the `void-installer` script included in the ISO. Install from network source, or else you will have to run a few extra commands on some occasions.
 2. Boot into Void Linux and sign in as any user.
 3. Run `xbps-install -S git` as root.\

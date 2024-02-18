@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "This script will install Void Linux using xbps, and then run install.sh. Please ensure you have booted into Void Linux live media. This only works on an EFI system. I am assuming you already have an internet connection, which you have used to download this script."
+echo "This script will install Void Linux using xbps, and then run install.sh. DO NOT USE THIS. RUN THE OFFICIAL INSTALLER. THIS IS ME TESTING IF I CAN ADJUST 'install-void-scripted.sh' TO TAKE USER INPUT."
 echo "WARNING: THIS IS AN UNOFFICAL SCRIPT. DO NOY REPORT ANY ISSUES TO THE VOID LINUX TEAM! void-installer is the official script. Report any issues at https://github.com/Rockpods/void-de-installer"
 
 read -p "Do you want to continue with the installation?(yes/no) " install
@@ -13,10 +13,10 @@ if [[ "${install,,}" == *"yes"* ]];then
     read -p "What partition do you want to make your ESP(/boot/efi)? " esppartition
     mkfs.vfat $esppartition
     echo "Mounting created partitions"
-    mount /dev/sda2 /mnt/
+    mount $rootpartition /mnt/
     mkdir -p /mnt/boot/efi/
-    mount /dev/sda1 /mnt/boot/efi/
-    read -p "Would you like to enable swap?" swapyes
+    mount $rootpartition /mnt/boot/efi/
+    read -p "Would you like to enable swap? " swapyes
     if [[ "${swapyes,,}" == *"yes"* ]];then
         read -p "What partition would you like to make your swap? " swappartition
         mkswap $swappartition

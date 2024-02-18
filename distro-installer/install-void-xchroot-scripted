@@ -1,16 +1,19 @@
 #!/bin/bash
 
+echo "DO NOT USE THIS UNLESS YOU KNOW WHAT YOU ARE DOING"
+sleep 15s
+
 read -p "What shall be the hostname of the system? " thehostname
 ls /usr/share/kbd/keymaps/i386/qwerty
 read -p "What keymap should be installed?(ex: us) " thekeymap
-echo $thehostname >> /etc/rc.conf
-echo $thekeymap >> /etc/rc.conf
+echo "voidlinuxtesting" >> /etc/hostname
+echo 'KEYMAP="us"' >> /etc/rc.conf
+ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
 xbps-reconfigure -f glibc-locales
 echo "Setting root password"
 passwd
 echo "Creating non-root user"
-read -p "What username do you want to use? " username
-useradd $username
+useradd void
 cp /proc/mounts /etc/fstab
 vi cp /proc/mounts /etc/fstab
 xbps-install grub-x86_64-efi

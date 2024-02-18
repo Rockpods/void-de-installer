@@ -24,7 +24,7 @@ read -p "What GPU are you using(AMD, Intel, or NVIDIA): " gpu
 if [[ "${gpu,,}" == *"amd"* ]]; then
     echo "Installing graphics drivers for an AMD GPU."
     sleep 4s
-    xbps-install -y mesa-dri vulkan-loader mesa-vulkan-radeon amdvlk xf86-video-amdgpu xf86-video-ati amdgpu mesa-vaapi mesa-vdpau
+    xbps-install -y mesa-dri vulkan-loader mesa-vulkan-radeon amdvlk xf86-video-amdgpu xf86-video-ati mesa-vaapi mesa-vdpau
     else if [[ "${gpu,,}" == *"intel"* ]]; then
         echo "Installing graphics drivers for an Intel GPU."
         sleep 4s
@@ -40,25 +40,21 @@ if [[ "${gpu,,}" == *"amd"* ]]; then
     fi
 fi
 
-# Install GNOME and important software. Flathub is enabled for GNOME Software.
-xbps-install -y dbus gnome elogind gdm NetworkManager gnome-software firefox vlc libreoffice pulseaudio alsa-plugins-pulseaudio timeshift cronie bluez xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk chrony
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+# Install GNOME and important software.
+./desktops/gnome.sh
 
 # Install fonts
-xbps-install -y noto-fonts-emoji noto-fonts-ttf noto-fonts-ttf-extra
+./extra/fonts.sh
 
 # Install printer drivers (I fucking hate printers so much. Why does not a single good printer exist.)
-xbps-install -y brother-brlaser epson-inkjet-printer-escpr cnijfilter2 hplip-gui cnijfilter2 cups-filters gutenprint foomatic-db foomatic-db-nonfree avahi nss-mdns
+./extra/printer.sh
 
-# Disable the network management services used in the installer.
-rm /var/service/dhcpcd
-rm /var/service/wpa_supplicant
+# Disable the network management services used in the installer and enable NetworkManager. This is not in the script so I can use ConnMan with Enlightenment.
+./extra/NetworkManager.sh
 
-# Enabling important services
+# Enabling important services not started elsewhere
 ln -s /etc/sv/dbus /var/service/
 ln -s /etc/sv/elogind /var/service/
-ln -s /etc/sv/NetworkManager /var/service/
-ln -s /etc/sv/avahi-daemon /var/service/
 ln -s /etc/sv/bluetoothd /var/service/
 ln -s /etc/sv/cronie /var/service/
 ln -s /etc/sv/chronyd /var/service/
