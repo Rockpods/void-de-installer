@@ -1,6 +1,7 @@
 #!/bin/bash
 
-read -p "Do you want to install printer drivers?(y/n) "
+install="y"
+# read -p "Do you want to install printer drivers?(y/n) "
 if [[ "${install,,}" == *"y"* ]];then
     echo "Installing printer drivers"
     sleep 5s

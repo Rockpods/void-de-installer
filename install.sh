@@ -13,6 +13,9 @@ if [[ "${gpu,,}" == *"n"* ]];then
    exit
 fi
 
+read -p "What desktop environment do you want to install(kde or gnome): " de
+read -p "What GPU are you using(AMD, Intel, or NVIDIA): " gpu
+
 # Update and enable optional repos
 xbps-install -u xbps
 xbps-install -Syu
@@ -20,7 +23,6 @@ xbps-install -y void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
 
 # Install graphics drivers and firmware/microcode
 xbps-install -y intel-ucode linux-firmware-amd
-read -p "What GPU are you using(AMD, Intel, or NVIDIA): " gpu
 if [[ "${gpu,,}" == *"amd"* ]]; then
     echo "Installing graphics drivers for an AMD GPU."
     sleep 4s
@@ -34,14 +36,19 @@ if [[ "${gpu,,}" == *"amd"* ]]; then
             sleep 4s
             xbps-install -y nvidia nvidia-libs-32bit
             else
-            echo "Could not find a supported GPU by that name. Press ctrl+c now to stop install."
+            echo "Could not find a supported GPU. Press ctrl+c now if you want to stop install."
             sleep 15s
         fi
     fi
 fi
 
-# Install GNOME
-chmod u+x desktops/gnome.sh
-./desktops/gnome.sh
+# Install desktop environment
+if [[ "${de,,}" == *"gnome"* ]]; then
+    chmod u+x desktops/gnome.sh
+    ./desktops/gnome.sh
+else
+    chmod u+x desktops/kde.sh
+    ./desktops/kde.sh
+fi
 
 reboot
