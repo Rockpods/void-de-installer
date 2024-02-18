@@ -18,7 +18,7 @@ An install script for Void Linux that installs GNOME, and sets it up for day-to-
     sudo ./install.sh
     ```
     If you want to view the script before running, run the following command: `cat install.sh | less`. Press q to exit less.
-5. If you want to create the same directories in your home folder that would be exist on a Windows machine, use the folllowing command:
+5. If you want to create the same directories in your home folder that would be exist on a Windows machine, run the folllowing command:
     ```sh
     mkdir ~/Documents ~/Downloads ~/Music ~/Videos ~/Desktop ~/Pictures
     ```

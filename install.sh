@@ -43,7 +43,6 @@ fi
 # Install GNOME and important software. Flathub is enabled for GNOME Software.
 xbps-install -y dbus gnome elogind gdm NetworkManager gnome-software firefox vlc libreoffice pulseaudio alsa-plugins-pulseaudio timeshift cronie bluez xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk chrony
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-rm -rf ~/.cache/gnome-software
 
 # Install fonts
 xbps-install -y noto-fonts-emoji noto-fonts-ttf noto-fonts-ttf-extra
