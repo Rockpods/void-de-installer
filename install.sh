@@ -3,17 +3,17 @@
 # TO-DO: Start work on KDE(and install OctoXBPS if using the KDE install) and Enlightenment.
 
 echo "This script is not endorsed by the Void Linux project. If you have any issues, please report them at https://github.com/Rockpods/void-de-installer/."
-echo "This has only been tested by installing from the the 2023-06-28 glibc live image with void-installer on the LCD Steam Deck and an HP Intel laptop. Please be more verbose if reporting issues using a different version of Void."
-echo "You will have to reconfigure your WiFi once boot into GNOME."
+echo "This has only been tested by installing from the the 2023-06-28 glibc live image with void-installer on the LCD Steam Deck and an HP Intel laptop. Please be more verbose if reporting issues using something different."
+echo "You will have to reconfigure your WiFi after boot."
 echo "If you are running this script, you should already have an internet connection and already have Void Linux installed."
 echo "IMPORTANT: IF YOU ARE USING AN NVIDIA GPU, DO NOT CONTINUE UNTIL YOU KNOW THAT THE GRAPHICS DRIVERS BEING INSTALLED ARE THE CORRECT ONES FOR YOUR CARD."
 read -p "Do you want to continue with the installation?(yes/no) " gpu
-if [[ "${gpu,,}" == *"no"* ]];then
+if [[ "${gpu,,}" == *"n"* ]];then
    echo "exiting installer"
    exit
 fi
 
-# Update XBPS and Void packages to continue installation if someone installed from an old ISO without downloading packages from the internet, and enable extra repositories you will probably want to use at some point.
+# Update and enable optional repos
 xbps-install -u xbps
 xbps-install -Syu
 xbps-install -y void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
@@ -40,31 +40,8 @@ if [[ "${gpu,,}" == *"amd"* ]]; then
     fi
 fi
 
-# Install GNOME and important software.
+# Install GNOME
 chmod u+x desktops/gnome.sh
 ./desktops/gnome.sh
 
-# Install fonts
-echo "Installing fonts"
-sleep 5s
-xbps-install -y noto-fonts-emoji noto-fonts-ttf noto-fonts-ttf-extra
-echo "Finished installing fonts"
-
-# Install printer drivers (I fucking hate printers so much. Why does not a single good printer exist.)
-chmod u+x extra/printer.sh
-./extra/printer.sh
-
-# Disable the network management services used in the installer and enable NetworkManager. This is not in the script so I can use ConnMan with Enlightenment.
-chmod u+x extra/printer.sh
-./extra/NetworkManager.sh
-
-# Enabling important services not started elsewhere
-ln -s /etc/sv/dbus /var/service/
-ln -s /etc/sv/elogind /var/service/
-ln -s /etc/sv/bluetoothd /var/service/
-ln -s /etc/sv/cronie /var/service/
-ln -s /etc/sv/chronyd /var/service/
-
-# Start GDM service and reboot
-ln -s /etc/sv/gdm /var/service/
 reboot

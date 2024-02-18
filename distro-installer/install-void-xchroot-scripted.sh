@@ -13,7 +13,6 @@ echo "Creating non-root user"
 useradd void
 cp /proc/mounts /etc/fstab
 xbps-install nano
-cp /proc/mounts /etc/fstab
 nano /etc/fstab
 xbps-install grub-x86_64-efi
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id="Void"

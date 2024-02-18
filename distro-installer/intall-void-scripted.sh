@@ -15,6 +15,6 @@ mkdir -p /mnt/var/db/xbps/keys
 cp /var/db/xbps/keys/* /mnt/var/db/xbps/keys/
 wpa_cli -i wlo1
 XBPS_ARCH=$ARCH xbps-install -S -r /mnt -R "$REPO" base-system
-xchroot /mnt /bin/bash << ./install-void-xchroot-scripted.sh
+xchroot /mnt /bin/bash
 # cd ../
 # ./install.sh
