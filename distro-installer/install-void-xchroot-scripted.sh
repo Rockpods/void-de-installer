@@ -3,9 +3,6 @@
 echo "DO NOT USE THIS UNLESS YOU KNOW WHAT YOU ARE DOING"
 sleep 15s
 
-read -p "What shall be the hostname of the system? " thehostname
-ls /usr/share/kbd/keymaps/i386/qwerty
-read -p "What keymap should be installed?(ex: us) " thekeymap
 echo "voidlinuxtesting" >> /etc/hostname
 echo 'KEYMAP="us"' >> /etc/rc.conf
 ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
@@ -15,7 +12,9 @@ passwd
 echo "Creating non-root user"
 useradd void
 cp /proc/mounts /etc/fstab
-vi cp /proc/mounts /etc/fstab
+xbps-install nano
+cp /proc/mounts /etc/fstab
+nano /etc/fstab
 xbps-install grub-x86_64-efi
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id="Void"
 xbps-reconfigure -fa
