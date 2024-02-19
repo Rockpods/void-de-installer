@@ -7,7 +7,7 @@ chmod u+x ../extra/printer.sh
 # Start KDE Plasma 5 install
 echo "Starting KDE Plasma 5 install"
 sleep 5s
-xbps-install -y kde5 kde5-baseapps xorg NetworkManager octoxbps elogind dbus pulseaudio alsa-plugins-pulseaudio timeshift cronie bluez xdg-desktop-portal kdegraphics-thumbnailers chrony libavdevice libavcodec xorg-server-xwayland ffmpegthumbs xdg-desktop-portal-kde sddm flatpak
+xbps-install -y kde5 kde5-baseapps xorg NetworkManager octoxbps mpv elogind dbus pulseaudio alsa-plugins-pulseaudio timeshift cronie bluez xdg-desktop-portal kdegraphics-thumbnailers chrony libavdevice libavcodec xorg-server-xwayland ffmpegthumbs xdg-desktop-portal-kde sddm firefox flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # Install fonts
@@ -26,5 +26,5 @@ ln -s /etc/sv/cronie /var/service/
 ln -s /etc/sv/chronyd /var/service/
 
 # Start SDDM service and reboot
-# echo "Enabling display manager and rebooting"
-# ln -s /etc/sv/sddm /var/service/
+echo "Enabling display manager and rebooting"
+ln -s /etc/sv/sddm /var/service/
