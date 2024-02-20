@@ -1,15 +1,16 @@
 #!/bin/bash
 
-# Install printer drivers
-chmod u+x extra/printer.sh
-../extra/printer.sh
-
 # Install GNOME. Flathub is enabled for GNOME Software.
 echo "Starting GNOME install"
 sleep 5s
-# vlc libreoffice
-xbps-install -y dbus gnome elogind gdm NetworkManager gnome-software firefox pulseaudio alsa-plugins-pulseaudio octoxbps timeshift cronie bluez xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk chrony xorg libavdevice libavcodec xorg-server-xwayland mpv
+xbps-install -y dbus gnome elogind gdm gnome-software firefox pulseaudio alsa-plugins-pulseaudio cronie bluez xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk chrony xorg libavdevice libavcodec xorg-server-xwayland
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+if [[ "${1,,}" == *"extra"* ]]; then
+    chmod u+x extra.sh
+    ./extra.sh
+    xbps-install -y gnome-apps
+fi
 
 # Install fonts
 chmod u+x ../extra/fonts.sh

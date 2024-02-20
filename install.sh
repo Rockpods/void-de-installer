@@ -15,6 +15,10 @@ fi
 
 read -p "What desktop environment do you want to install(kde or gnome): " de
 read -p "What GPU are you using(AMD, Intel, or NVIDIA): " gpu
+read -p "Do you want to install extra apps like LibreOffice(yes or no): " extra
+# Install printer drivers (I fucking hate printers so much. Why does not a single good printer exist.)
+chmod u+x ../extra/printer.sh
+../extra/printer.sh
 
 # Update and enable optional repos
 xbps-install -u xbps
@@ -45,10 +49,18 @@ fi
 # Install desktop environment
 if [[ "${de,,}" == *"gnome"* ]]; then
     chmod u+x desktops/gnome.sh
-    ./desktops/gnome.sh
+    if [[ "${extra,,}" == *"yes"* ]]
+        ./desktops/gnome.sh extra
+    else
+        ./desktops/gnome.sh
+    fi
 else
     chmod u+x desktops/kde.sh
-    ./desktops/kde.sh
+    if [[ "${extra,,}" == *"yes"* ]]
+        ./desktops/kde.sh extra
+    else
+        ./desktops/kde.sh
+    fi
 fi
 
 reboot
