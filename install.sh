@@ -17,8 +17,8 @@ read -p "What desktop environment do you want to install(kde or gnome): " de
 read -p "What GPU are you using(AMD, Intel, or NVIDIA): " gpu
 #read -p "Do you want to install extra apps like LibreOffice(yes or no): " extra
 # Install printer drivers
-chmod u+x extra/printer.sh
-./extra/printer.sh
+chmod u+x desktops/extra/printer.sh
+./desktops/extra/printer.sh
 
 # Update and enable optional repos
 xbps-install -u xbps
