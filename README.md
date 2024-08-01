@@ -5,7 +5,7 @@ An script that installs GNOME or KDE on Void Linux. This project was started so 
 
 ### Installation Instructions:
 
-**Warning: The script probably does not do well at installing the correct drivers for your NVIDIA GPU. If you have an NVIDIA GPU, it is probably better to replace the line 37 with the recommended commands for your GPU, which can be found in the [Void Linux Documentation](https://docs.voidlinux.org/config/graphical-session/graphics-drivers/index.html).**
+**Warning: If you have an NVIDIA GPU, replace the NVIDIA graphics card packages with the recommended packages for your GPU, which can be found in the [Void Linux Documentation](https://docs.voidlinux.org/config/graphical-session/graphics-drivers/index.html).**
 1. Install Void Linux using the `void-installer` script included in the ISO. Install from network source, or else you will have to run a few extra commands on some occasions.
 2. Boot into Void Linux and sign in as any user.
 3. Run `xbps-install -S git` as root.\
@@ -18,9 +18,9 @@ An script that installs GNOME or KDE on Void Linux. This project was started so 
     sudo ./install.sh
     ```
     If you want to view the script before running, run the following command: `cat install.sh | less`. Press q to exit less.\
-    If you want to not install printer drivers, open `printer.sh` at `extra/printer.sh` in a text editor and edit line 3 to say `install="n"`.
+    If you want to not install printer drivers, open `printer.sh` at `desktops/extra/printer.sh` in a text editor and edit line 3 to say `install="n"`.
 <!-- 5. If you want to create the same directories in your home folder that would be exist on a Windows machine, run the folllowing command:
     ```sh
     mkdir ~/Documents ~/Downloads ~/Music ~/Videos ~/Desktop ~/Pictures
     ``` -->
-6. If you are using an SSD, after log in, check [the wiki](https://docs.voidlinux.org/config/ssd.html) to learn how to enable periodic trim. Cronie should already be installed and enabled.
+6. If you are using an SSD, after log in, check the [Void Linux Documentation](https://docs.voidlinux.org/config/ssd.html) to learn how to enable periodic trim. Cronie should already be installed and enabled.
