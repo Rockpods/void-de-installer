@@ -6,19 +6,19 @@ sleep 5s
 xbps-install -y dbus gnome elogind gdm gnome-software firefox pulseaudio alsa-plugins-pulseaudio cronie bluez xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk chrony xorg libavdevice libavcodec xorg-server-xwayland
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-if [[ "${1,,}" == *"extra"* ]]; then
-    chmod u+x extra.sh
-    ./extra.sh
-    xbps-install -y gnome-apps
-fi
+#if [[ "${1,,}" == *"extra"* ]]; then
+#    chmod u+x extra.sh
+#    ./extra.sh
+#    xbps-install -y gnome-apps
+#fi
 
 # Install fonts
-chmod u+x ../extra/fonts.sh
-../extra/fonts.sh
+chmod u+x extra/fonts.sh
+extra/fonts.sh
 
 # Disable WPA_Supplicant and DHCPCD, and enable NetworkManager
-chmod u+x ../extra/NetworkManager.sh
-../extra/NetworkManager.sh
+chmod u+x extra/NetworkManager.sh
+extra/NetworkManager.sh
 
 # Enabling important services not started elsewhere
 echo "Enabling other services"
