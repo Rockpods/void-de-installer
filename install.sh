@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# TO-DO: Start work on KDE(and install OctoXBPS if using the KDE install) and Enlightenment.
+# TO-DO: Start work on KDE(and install OctoXBPS if using the KDE install) and Enlightenment. Automated install to be worked on.
+# Last tested on the x86-64 2024-03-14 base glibc install
 
 echo "This script is not endorsed by the Void Linux project. If you have any issues, please report them at https://github.com/Rockpods/void-de-installer/."
-echo "This has only been tested by installing from the the 2023-06-28 glibc live image with void-installer on the LCD Steam Deck and an HP Intel laptop. Please be more verbose if reporting issues using something different."
 echo "You will have to reconfigure your WiFi after boot."
 echo "If you are running this script, you should already have an internet connection and already have Void Linux installed."
-echo "IMPORTANT: IF YOU ARE USING AN NVIDIA GPU, DO NOT CONTINUE UNTIL YOU KNOW THAT THE GRAPHICS DRIVERS BEING INSTALLED ARE THE CORRECT ONES FOR YOUR CARD."
+echo "IMPORTANT: NVIDIA grapics drivers may not work correctly."
 read -p "Do you want to continue with the installation?(yes/no) " gpu
 if [[ "${gpu,,}" == *"n"* ]];then
    echo "exiting installer"
@@ -16,7 +16,7 @@ fi
 read -p "What desktop environment do you want to install(kde or gnome): " de
 read -p "What GPU are you using(AMD, Intel, or NVIDIA): " gpu
 #read -p "Do you want to install extra apps like LibreOffice(yes or no): " extra
-# Install printer drivers (I fucking hate printers so much. Why does not a single good printer exist.)
+# Install printer drivers
 chmod u+x extra/printer.sh
 ./extra/printer.sh
 
@@ -62,4 +62,7 @@ else
     fi
 fi
 
-reboot
+read -p "Do you want to reboot(yes or no): " reboot
+if [[ "${reboot,,}" == *"y"* ]];then
+   reboot
+fi
